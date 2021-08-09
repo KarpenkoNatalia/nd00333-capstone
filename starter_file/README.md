@@ -82,7 +82,7 @@ I think that the accuracy of the best model is pretty high, but it can be altere
 
 
 ## Hyperparameter Tuning
-*TODO*: What kind of model did you choose for this experiment and why? Give an overview of the types of parameters and their ranges used for the hyperparameter search
+
 I chose to apply the SKLearn  LogisticRegression with two parameters:
 
 - C: Determines regularization strength (uniform range between 0.1 and 10). Higher C value means less regularization. 
@@ -92,14 +92,62 @@ These parameters are selected randomly, with the help of RandomParameterSampling
 
 
 ### Results
-*TODO*: What are the results you got with your model? What were the parameters of the model? How could you have improved it?
 
-*TODO* Remeber to provide screenshots of the `RunDetails` widget as well as a screenshot of the best model trained with it's parameters.
+Starting our Hyper Drive, it's possible to see the details with RunDetails widget:
+
 ![](images/hyperdrive_run_in_progress.PNG)
-![](images/best_automl_model.PNG)
+
+The best Hyperparametric run has the following parameters:
+![](images/best_hd_model.PNG)
 
 ## Model Deployment
-*TODO*: Give an overview of the deployed model and instructions on how to query the endpoint with a sample input.
+Comparing two models we can see that the accuracy of AutoML best model is higher than the same metric of hyperparametric model and so I deployed the best AutoML model.
+![](images/endpoint1.PNG)
+
+I also enabled the application insights:
+![](images/application_insights.PNG)
+
+To query  endpoint, we need to create a JSON object based on our scoring script as well as the Swagger JSON which functions as a schema. I user endpoint.py file with the following commands:
+
+data = {"data":
+        [
+          {
+            "fixed acidity": 5, 
+            "volatile acidity": 4, 
+            "citric acid": 7,
+            "residual sugar": 3,
+            "chlorides": 2,
+            "free sulfur dioxide": 6,
+            "total sulfur dioxide": 8, 
+            "density": 4, 
+            "pH": 7, 
+            "sulphates": 6, 
+            "alcohol": 10
+          },
+          {
+            "fixed acidity": 7.3, 
+            "volatile acidity": 0.65, 
+            "citric acid": 0.0,
+            "residual sugar": 1.2,
+            "chlorides": 0.065,
+            "free sulfur dioxide": 15.0,
+            "total sulfur dioxide": 21.0, 
+            "density": 0.9946, 
+            "pH": 3.39, 
+            "sulphates": 0.47, 
+            "alcohol": 10.0
+          },
+      ]
+    }
+
+input_data = json.dumps(data)
+resp = requests.post(uri, input_data, headers=headers)
+
+The response:
+
+![](images/response.PNG)
+
+
 
 ## Screen Recording
 https://drive.google.com/file/d/1cqRVELSvoIJWdhq7okYWclMduKxqNZlB/view?usp=sharing
