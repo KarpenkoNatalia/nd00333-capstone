@@ -2,7 +2,7 @@ import requests
 import json
 
 # URL for the web service, should be similar to:
-uri='http://f2043950-dd92-445e-9ceb-d81d9756f1e1.westeurope.azurecontainer.io/score'
+uri='http://8c4c3158-d6a7-4531-956b-73dc5cc4a1f2.westeurope.azurecontainer.io/score'
 
 
 
