@@ -41,24 +41,62 @@ The input features are :
 
 ### Access
 Since we talk about a kaggle dataset, I downloaded it as a csv file and uploaded to the ML Azure environment. The csv file has then been uploaded to the Azure ML to the blob storage:
-
+![](images/dataset.PNG)
 
 ## Automated ML
-*TODO*: Give an overview of the `automl` settings and configuration you used for this experiment
+
+For this experiment I used the following AutoML settings:
+
+automl_config = AutoMLConfig(
+    compute_target = 'natcluster001',
+    experiment_timeout_minutes=30,
+    task= 'classification',
+    primary_metric='accuracy',
+    training_data= ds_t,
+    label_column_name= 'quality',
+    n_cross_validations= 2)
+
+I also used the exiting experiment 'red-wine-quality'.
 
 ### Results
-*TODO*: What are the results you got with your automated ML model? What were the parameters of the model? How could you have improved it?
 
-*TODO* Remeber to provide screenshots of the `RunDetails` widget as well as a screenshot of the best model trained with it's parameters.
+
+I was able to trace the automl run thanks to command RunDetails(wine_automl_run).show()
+
+![](images/automl_run_in_progress.PNG)
+
+The best AutoML model is VotingEnsemble whith the following parameters:
+
+Accuracy
+0.91244
+AUC macro
+0.89878
+AUC micro
+0.96362
+AUC weighted
+0.89878
+
+![](images/best_automl_model.PNG)
+
+I think that the accuracy of the best model is pretty high, but it can be altered by bias between classes of output variable. It can be a good idea to analyse dataset more balanced.
+
 
 ## Hyperparameter Tuning
 *TODO*: What kind of model did you choose for this experiment and why? Give an overview of the types of parameters and their ranges used for the hyperparameter search
+I chose to apply the SKLearn  LogisticRegression with two parameters:
+
+- C: Determines regularization strength (uniform range between 0.1 and 10). Higher C value means less regularization. 
+- Maximum number of iterations: The maximum number of training iterations per child run. I chose the values [50, 75, 100, 125] to ottimize the execution times.
+
+These parameters are selected randomly, with the help of RandomParameterSampling. For the termination policy the BanditPolicy was used.
 
 
 ### Results
 *TODO*: What are the results you got with your model? What were the parameters of the model? How could you have improved it?
 
 *TODO* Remeber to provide screenshots of the `RunDetails` widget as well as a screenshot of the best model trained with it's parameters.
+![](images/hyperdrive_run_in_progress.PNG)
+![](images/best_automl_model.PNG)
 
 ## Model Deployment
 *TODO*: Give an overview of the deployed model and instructions on how to query the endpoint with a sample input.
