@@ -41,7 +41,7 @@ The input features are :
 
 ### Access
 Since we talk about a kaggle dataset, I downloaded it as a csv file and uploaded to the ML Azure environment. The csv file has then been uploaded to the Azure ML to the blob storage:
-![](nd00333-capstone//images/dataset.PNG)
+![](nd00333-capstone/images/dataset.PNG)
 
 ## Automated ML
 
