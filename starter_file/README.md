@@ -65,7 +65,45 @@ I was able to trace the automl run thanks to command RunDetails(wine_automl_run)
 
 ![](images/automl_run_in_progress.PNG)
 
-The best AutoML model is VotingEnsemble whith the following parameters:
+Below some  parameters of my best AutoML model retrieved using code 
+
+best_run, fitted_model = wine_automl_run.get_output()
+print(fitted_model)
+
+Pipeline(memory=None,
+         steps=[('datatransformer',
+                 DataTransformer(enable_dnn=False,
+				 enable_feature_sweeping=True,
+				 feature_sweeping_config={},
+				 feature_sweeping_timeout=86400,
+				 featurization_config=None, 
+				 force_text_dnn=False,
+				 is_cross_validation=True,
+				 is_onnx_compatible=False, 
+				 observer=None,
+				 task='classification',
+				 working_dir='/mnt/batch/tasks/shared/LS_root/mount...
+				 
+('kneighborsclassifier', 
+KNeighborsClassifier(algorithm='auto', 
+leaf_size=30,
+ metric='manhattan', 
+ metric_params=None, 
+ n_jobs=1,
+ n_neighbors=5,
+ p=2, 
+ weights='distance'))],
+ verbose=False))], 
+ flatten_transform=None, 
+ weights=[0.08333333333333333, 0.08333333333333333, 0.08333333333333333, 0.08333333333333333, 0.08333333333333333, 0.08333333333333333, 0.3333333333333333, 0.16666666666666666]))]
+ 
+ And the following snap show all the ensemble algorithms:
+ 
+ 
+ ![](images/ensemble.PNG)
+
+
+The best AutoML model is VotingEnsemble whith the following metrics:
 
 Accuracy
 0.91244
