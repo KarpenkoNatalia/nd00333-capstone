@@ -191,5 +191,5 @@ The response:
 
 The analized data is unbalanced. As a future improvement of the model I can try the different type of refactoring of the output variable.
 ## Screen Recording
-https://drive.google.com/file/d/1cqRVELSvoIJWdhq7okYWclMduKxqNZlB/view?usp=sharing
+https://drive.google.com/file/d/1zbsZlygsWSkbdb7XzLSMNemm2WXiuy05/view?usp=sharing
 
