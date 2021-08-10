@@ -65,10 +65,12 @@ I was able to trace the automl run thanks to command RunDetails(wine_automl_run)
 
 ![](images/automl_run_in_progress.PNG)
 
-Below some  parameters of my best AutoML model retrieved using code 
+
+Here are some  parameters of my best AutoML model retrieved using code :
 
 best_run, fitted_model = wine_automl_run.get_output()
 print(fitted_model)
+
 
 Pipeline(memory=None,
          steps=[('datatransformer',
@@ -97,7 +99,7 @@ leaf_size=30,
  flatten_transform=None, 
  weights=[0.08333333333333333, 0.08333333333333333, 0.08333333333333333, 0.08333333333333333, 0.08333333333333333, 0.08333333333333333, 0.3333333333333333, 0.16666666666666666]))]
  
- And the following snap show all the ensemble algorithms:
+ And the following snap shows all the ensemble algorithms:
  
  
  ![](images/ensemble.PNG)
